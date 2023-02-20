@@ -20,5 +20,18 @@ namespace Plugin.Shared.Model
         public string Name { get => base.GetValue<string>(); set => base.OnChangeValue(value); }
         [AttributeLogicalName(Fields.WebSiteUrl)]
         public string WebSiteUrl { get => base.GetValue<string>(); set => base.OnChangeValue(value); }
+
+        public Competitor CreateCopy()
+        {
+            Competitor competitor = this;
+
+            Competitor copy = new Competitor();
+            foreach (var field in competitor.Attributes)
+            {
+                if (field.Value is Guid keyEntity && keyEntity == this.Id) continue;
+                copy[field.Key] = field.Value;
+            }
+            return copy;
+        }
     }
 }

@@ -4,6 +4,7 @@ using FakeXrmEasy.Plugins.Audit;
 using FakeXrmEasy.Plugins.PluginSteps;
 using Microsoft.Xrm.Sdk;
 using NUnit.Framework;
+using Plugin.Shared.Model;
 using System.Linq;
 using System.Security.Principal;
 
@@ -30,7 +31,7 @@ namespace UnitTest_Plugins
             {
                 EntityLogicalName = TableCompetitorName,
                 MessageName = "Create",
-                Stage = FakeXrmEasy.Abstractions.Plugins.Enums.ProcessingStepStage.Preoperation,
+                Stage = FakeXrmEasy.Abstractions.Plugins.Enums.ProcessingStepStage.Postoperation,
                 FilteringAttributes = new string[2]
                 {
                     "name","websiteurl"
@@ -42,10 +43,10 @@ namespace UnitTest_Plugins
         {
 
             var inputParams = new ParameterCollection();
-            inputParams.Add("Target", new Entity(TableCompetitorName)
+            inputParams.Add("Target", new Competitor()
             {
-                ["name"] = "Xpto10",
-                ["websiteurl"] = "https://www.google.com"
+                Name = "Xpto10",
+                WebSiteUrl = "https://www.google.com"
             });
             try
             {
@@ -64,11 +65,11 @@ namespace UnitTest_Plugins
         public void Test_End_To_End_Success()
         {
             SetConfigPluginSTeps();
-            var competidor_new = new Entity(TableCompetitorName);
-            competidor_new["name"] = "Xpt01";
-            competidor_new["websiteurl"] = "https://www.jreis.com";
+            var competidor_new = new Competitor();
+            competidor_new.Name = "Xpt01";
+            competidor_new.WebSiteUrl = "https://www.jreis.com";
             _service.Create(competidor_new);
-            var result = _context.CreateQuery(TableCompetitorName).FirstOrDefault(competitor => competitor.GetAttributeValue<string>("name") == "Xpt01");
+            var result = _context.CreateQuery<Competitor>().FirstOrDefault(competitor => competitor.Name == competidor_new.Name);
 
             Assert.IsTrue(result != null);
         }

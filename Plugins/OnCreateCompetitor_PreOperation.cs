@@ -2,6 +2,7 @@
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Query;
 using Plugin.Shared;
+using Plugin.Shared.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,25 +17,22 @@ namespace Plugins
         public override void PluginExecute(PluginContext pluginContext)
         {
             if (pluginContext.Context.Depth > DEPTH) return;
-            var target = pluginContext.GetTarget();
-            if (HasExist(ref target, pluginContext)) return;
+            var Competidor_Target = pluginContext.GetTarget<Competitor>();
 
+            if (HasExist(ref Competidor_Target, pluginContext)) return;
 
-
-            var copy = new Entity(target.LogicalName);
-            foreach (var field in target.Attributes)
-            {
-                copy[field.Key] = field.Value;
-            }
+            var Copy_Competitor = Competidor_Target.CreateCopy();
+            pluginContext.OrganizationService.Create(Copy_Competitor);
         }
 
-        private bool HasExist(ref Entity Competitor, PluginContext _pluginCtx)
+        private bool HasExist(ref Competitor Competitor, PluginContext _pluginCtx)
         {
 
             var queryExpression = new QueryExpression(Competitor.LogicalName);
-            queryExpression.Criteria.AddCondition("name", ConditionOperator.Equal, Competitor.GetAttributeValue<string>("name"));
-            queryExpression.Criteria.AddCondition("websiteurl", ConditionOperator.Equal, Competitor.GetAttributeValue<string>("websiteurl"));
-            return _pluginCtx.OrganizationService.RetrieveMultiple(queryExpression).Entities.Any();
+            queryExpression.Criteria.AddCondition("name", ConditionOperator.Equal, Competitor.Name);
+            queryExpression.Criteria.AddCondition("websiteurl", ConditionOperator.Equal, Competitor.WebSiteUrl);
+            var Query_Expression_Result = _pluginCtx.OrganizationService.RetrieveMultiple(queryExpression).Entities;
+            return Query_Expression_Result.Any();
 
         }
     }
