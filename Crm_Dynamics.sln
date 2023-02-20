@@ -5,6 +5,8 @@ VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins", "Plugins\Plugins.csproj", "{FAE80673-CB15-468C-BAEC-412259FFDAFD}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Plugin.Shared", "Plugin.Shared\Plugin.Shared.shproj", "{ADC7F08A-A107-44FB-A940-A1F010E8B29A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,5 +23,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {81C9DB6A-5D68-49B4-9FDB-2B1ED2492D3E}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Plugin.Shared\Plugin.Shared.projitems*{adc7f08a-a107-44fb-a940-a1f010e8b29a}*SharedItemsImports = 13
+		Plugin.Shared\Plugin.Shared.projitems*{fae80673-cb15-468c-baec-412259ffdafd}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
