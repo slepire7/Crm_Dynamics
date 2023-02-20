@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugins", "Plugins\Plugins.
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Plugin.Shared", "Plugin.Shared\Plugin.Shared.shproj", "{ADC7F08A-A107-44FB-A940-A1F010E8B29A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest_Plugins", "UnitTest_Plugins\UnitTest_Plugins.csproj", "{5B8B7F1E-1665-41DB-A160-603DE4509D07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{FAE80673-CB15-468C-BAEC-412259FFDAFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAE80673-CB15-468C-BAEC-412259FFDAFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAE80673-CB15-468C-BAEC-412259FFDAFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B8B7F1E-1665-41DB-A160-603DE4509D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B8B7F1E-1665-41DB-A160-603DE4509D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B8B7F1E-1665-41DB-A160-603DE4509D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B8B7F1E-1665-41DB-A160-603DE4509D07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

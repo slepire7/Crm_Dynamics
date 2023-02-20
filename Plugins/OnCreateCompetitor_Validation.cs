@@ -1,10 +1,7 @@
 ﻿using Microsoft.Xrm.Sdk;
 using Plugin.Shared;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Plugins
 {
@@ -23,10 +20,12 @@ namespace Plugins
             catch (InvalidPluginExecutionException ex) when (ex.InnerException != null)
             {
                 pluginContext.Trace(ex.InnerException.Message);
+                throw ex;
             }
             catch (InvalidPluginExecutionException ex)
             {
                 pluginContext.Trace(ex.Message);
+                throw ex;
             }
         }
         public void Validation_WebSite(ref Entity Competitor)
@@ -35,8 +34,8 @@ namespace Plugins
             if (string.IsNullOrEmpty(Url_Competitor) == false)
             {
                 Uri[] BLACK_LIST_WEBSITES = new Uri[2] {
-                     new Uri("google.com")
-                    ,new Uri( "bing.com")
+                     new Uri("https://www.google.com")
+                    ,new Uri("https://www.bing.com")
                 };
 
                 if (BLACK_LIST_WEBSITES.Any(uri => uri.Host == new Uri(Url_Competitor).Host))
