@@ -40,7 +40,7 @@ namespace Plugins
                 };
 
                 if (BLACK_LIST_WEBSITES.Any(uri => uri.Host == new Uri(Url_Competitor).Host))
-                    throw new InvalidPluginExecutionException("", PluginHttpStatusCode.BadRequest);
+                    throw new InvalidPluginExecutionException($"o site: {Url_Competitor} não pode ser utilizado", PluginHttpStatusCode.BadRequest);
             }
         }
     }
