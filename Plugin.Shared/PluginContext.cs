@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xrm.Sdk;
+using Plugin.Shared.Model;
 using System;
 
 namespace Plugin.Shared
@@ -26,6 +27,11 @@ namespace Plugin.Shared
         {
             const string Key = "Target";
             return Context.InputParameters.ContainsKey(Key) ? (Entity)Context.InputParameters[Key] : default;
+        }
+        public TEntity GetTarget<TEntity>() where TEntity : BaseEntity
+        {
+            const string Key = "Target";
+            return Context.InputParameters.ContainsKey(Key) ? ((Entity)Context.InputParameters[Key]).ToEntity<TEntity>() : default;
         }
     }
 }

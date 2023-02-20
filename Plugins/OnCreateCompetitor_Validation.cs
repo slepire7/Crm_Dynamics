@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xrm.Sdk;
 using Plugin.Shared;
+using Plugin.Shared.Model;
 using System;
 using System.Linq;
 
@@ -13,7 +14,7 @@ namespace Plugins
             try
             {
                 if (pluginContext.Context.Depth > DEPTH) return;
-                Entity Competitor = pluginContext.GetTarget();
+                var Competitor = pluginContext.GetTarget<Competitor>();
                 Validation_WebSite(ref Competitor);
 
             }
@@ -28,9 +29,9 @@ namespace Plugins
                 throw ex;
             }
         }
-        public void Validation_WebSite(ref Entity Competitor)
+        public void Validation_WebSite(ref Competitor Competitor)
         {
-            string Url_Competitor = Competitor.GetAttributeValue<string>("websiteurl");
+            string Url_Competitor = Competitor.WebSiteUrl;
             if (string.IsNullOrEmpty(Url_Competitor) == false)
             {
                 Uri[] BLACK_LIST_WEBSITES = new Uri[2] {

@@ -10,6 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Base\Plugin.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\BaseEntity.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Competitor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)PluginContext.cs" />
   </ItemGroup>
 </Project>
