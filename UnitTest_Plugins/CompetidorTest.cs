@@ -1,5 +1,6 @@
 using FakeXrmEasy.Pipeline;
 using FakeXrmEasy.Plugins;
+using FakeXrmEasy.Plugins.Audit;
 using FakeXrmEasy.Plugins.PluginSteps;
 using Microsoft.Xrm.Sdk;
 using NUnit.Framework;
@@ -21,9 +22,19 @@ namespace UnitTest_Plugins
                 MessageName = "Create",
                 Stage = FakeXrmEasy.Abstractions.Plugins.Enums.ProcessingStepStage.Prevalidation,
                 FilteringAttributes = new string[2]
-                           {
-                                    "name","websiteurl"
-                           },
+                {
+                    "name","websiteurl"
+                },
+            });
+            _context.RegisterPluginStep<Plugins.OnCreateCompetitor_PreOperation>(new PluginStepDefinition()
+            {
+                EntityLogicalName = TableCompetitorName,
+                MessageName = "Create",
+                Stage = FakeXrmEasy.Abstractions.Plugins.Enums.ProcessingStepStage.Preoperation,
+                FilteringAttributes = new string[2]
+                {
+                    "name","websiteurl"
+                },
             });
         }
         [Test]
@@ -43,7 +54,7 @@ namespace UnitTest_Plugins
             }
             catch (InvalidPluginExecutionException e)
             {
-                Assert.Pass();
+                Assert.Pass(e.Message);
             }
 
         }

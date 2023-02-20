@@ -5,9 +5,11 @@ using FakeXrmEasy.Middleware;
 using FakeXrmEasy.Middleware.Crud;
 using FakeXrmEasy.Middleware.Messages;
 using FakeXrmEasy.Middleware.Pipeline;
+using FakeXrmEasy.Plugins.Audit;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Tooling.Connector;
 using NUnit.Framework;
+using System;
 using System.Reflection;
 using UnitTest_Plugins.Helpers;
 
